@@ -1,25 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
+import  useApi from './useApi';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+const App = () => {
+  const { loading, data } = useApi('https://jsonplaceholder.typicode.com/users')
+
+  if (loading) return <h1>Loading</h1>
+
+  return(
+    <div>
+      <h1>Data fetched successfully</h1>
+      {JSON.stringify(data)}
     </div>
-  );
+  )
 }
 
 export default App;
